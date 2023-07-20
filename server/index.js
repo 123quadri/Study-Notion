@@ -26,7 +26,7 @@ app.use(express.json());
 
 app.use(
     cors({
-        origin:"https://studynotion-frontend-eight.vercel.app",
+        origin:"*",
         credentials:true,
     })
 );
