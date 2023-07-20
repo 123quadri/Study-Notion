@@ -5,7 +5,7 @@ const CourseProgress = require("../models/CourseProgress");
 const mailSender = require("../utils/mailSender");
 const {courseEnrollmentEmail} = require("../mail/templates/courseEnrollmentEmail");
 const { default: mongoose } = require("mongoose");
-const { IoFastFood } = require("react-icons/io5");
+
 require("dotenv").config();
 const { paymentSuccessEmail } = require("../mail/templates/paymentSuccessEmail");
 const crypto = require("crypto");
