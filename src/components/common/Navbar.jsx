@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, matchPath,Link } from "react-router-dom";
 import logo from "../../assets/Logo/Logo-Full-Light.png";
+import IntelliLogo from "../../assets/Logo/Intelli-logo.png";
 import { NavbarLinks } from "../../data/navbar-links";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -59,7 +60,7 @@ const Navbar = () => {
         {/* Image */}
         <NavLink to="/">
           <img
-            src={logo}
+            src={IntelliLogo}
             alt="logo img"
             width={160}
             height={42}

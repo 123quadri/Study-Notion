@@ -3,6 +3,7 @@ require("dotenv").config();
 const User = require("../models/User");
 
 exports.auth = async (req,res,next) => {
+    console.log("in auth middle ware");
 
     try {
         // console.log("cookie :" ,req.cookies.token);
@@ -44,6 +45,7 @@ exports.auth = async (req,res,next) => {
 
 
 exports.isStudent = async (req,res,next) => {
+    console.log("in student middle ware");
     try {
             if(req.user.accountType !== "Student"){
                 return res.status(401).json({

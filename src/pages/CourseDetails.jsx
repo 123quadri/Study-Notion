@@ -272,7 +272,7 @@ function CourseDetails() {
               <ul className="flex flex-col gap-y-2">
                   {
                     benefits.map((ele,index) => (
-                      <li>• {ele}</li>
+                      <li key={index}>• {ele}</li>
                     ))
                   }
               </ul>

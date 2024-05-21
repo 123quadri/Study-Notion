@@ -12,6 +12,7 @@ const crypto = require("crypto");
 
 //capture the payment and initiate the Razorpay order
 exports.capturePayment = async (req,res) => {
+    console.log("in capture payment backend");
     const {courses} = req.body;
     const userId  = req.user.id;
     
@@ -68,6 +69,7 @@ exports.capturePayment = async (req,res) => {
 
 //verify the payment
 exports.verifyPayment = async (req,res) => {
+    console.log("in verify payment backend");
     const razorpay_order_id = req.body?.razorpay_order_id;
     const razorpay_payment_id = req.body?.razorpay_payment_id;
     const razorpay_signature = req.body?.razorpay_signature;
@@ -103,6 +105,7 @@ exports.verifyPayment = async (req,res) => {
 }
 
 const enrollStudents = async(courses, userId, res) => {
+    console.log("in enroll studens backend");
 
     if(!courses || !userId) {
         // console.log("Error in enrollelStudents 1");
@@ -154,6 +157,7 @@ const enrollStudents = async(courses, userId, res) => {
 
 
 exports.sendPaymentSuccessEmail = async(req, res) => {
+    console.log("in send email payment backend");
     const {orderId, paymentId, amount} = req.body;
 
     const userId = req.user.id;

@@ -5,6 +5,12 @@
 // }
 const BASE_URL = process.env.REACT_APP_BASE_URL
 
+//AI ENDPOINTS
+export const aiEndpoints = {
+  SUMMARIZE_VIDEO: BASE_URL + "/ai/summarize",
+  ASK_DOUBT : BASE_URL + "/ai/ask-question"
+  
+}
 // AUTH ENDPOINTS
 export const endpoints = {
   SENDOTP_API: BASE_URL + "/auth/sendotp",

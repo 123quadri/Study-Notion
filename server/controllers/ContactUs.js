@@ -6,11 +6,11 @@ exports.contactUsController = async (req, res) => {
   const { email, firstname, lastname, message, phoneNo, countrycode } = req.body
   // console.log(req.body)
   try {
-    const emailRes = await mailSender(
-      email,
-      "Your Data send successfully",
-      contactUsEmail(email, firstname, lastname, message, phoneNo, countrycode)
-    )
+    // const emailRes = await mailSender(
+    //   email,
+    //   "Your Data send successfully",
+    //   contactUsEmail(email, firstname, lastname, message, phoneNo, countrycode)
+    // )
 
     const emailResTwo = await contactUsMailSender(email,"Study Notion Contact Us" , 
       `from ${email} 

@@ -27,6 +27,7 @@ function loadScript(src) {
 
 
 export async function buyCourse(token, courses, userDetails, navigate, dispatch) {
+    console.log("in buy course frontend");
     const toastId = toast.loading("Loading...");
     try{
         //load the script
@@ -47,7 +48,7 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
         if(!orderResponse.data.success) {
             throw new Error(orderResponse.data.message);
         }
-        // console.log("PRINTING orderResponse", orderResponse);
+        console.log("PRINTING orderResponse", orderResponse);
         //options
         const options = {
             key: process.env.RAZORPAY_KEY,
@@ -85,6 +86,7 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
 }
 
 async function sendPaymentSuccessEmail(response, amount, token) {
+    console.log("in send email success frontend");
     try{
         await apiConnector("POST", SEND_PAYMENT_SUCCESS_EMAIL_API, {
             orderId: response.razorpay_order_id,
@@ -101,6 +103,7 @@ async function sendPaymentSuccessEmail(response, amount, token) {
 
 //verify payment
 async function verifyPayment(bodyData, token, navigate, dispatch) {
+    console.log("in verify payment frontend");
     const toastId = toast.loading("Verifying Payment....");
     dispatch(setPaymentLoading(true));
     try{

@@ -22,7 +22,11 @@ export default function ChangeProfilePicture() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0]
-    // console.log("file is :",file)
+    console.log("file is :",file)
+
+    const formData = new FormData()
+    formData.append("displayPicture", imageFile)
+    console.log("formdata", formData)
     if (file) {
       setImageFile(file)
       previewFile(file)

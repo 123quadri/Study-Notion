@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/generative-ai": "^0.11.3",
+    "assemblyai": "^4.4.3",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.37.2",
@@ -27,6 +29,7 @@
     "nodemailer": "^6.9.3",
     "nodemon": "^2.0.22",
     "npm": "^9.7.2",
+    "openai": "^4.47.1",
     "otp-generator": "^4.0.1",
     "razorpay": "^2.8.6"
   }
