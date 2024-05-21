@@ -9,7 +9,6 @@ const AskAiModal = ({ setAskAi, context }) => {
     const [question,setQuestion] = useState("");
     const handleChange = (e) => {
         setQuestion(e.target.value)
-        console.log("question is :",question);
     }
 
     const handleSubmit = async () => {

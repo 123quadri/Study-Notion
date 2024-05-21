@@ -16,7 +16,7 @@ export const sendSummarizationRequest = async (data, token) => {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${token}`,
       })
-    //   console.log("VIDEO SUMMARIZATION  API RESPONSE............", response)
+      console.log("VIDEO SUMMARIZATION  API RESPONSE............", response)
       if (!response?.data?.success) {
         throw new Error("Could Not Summarize video")
       }
@@ -28,7 +28,7 @@ export const sendSummarizationRequest = async (data, token) => {
       result.transcript = transcript;
 
     } catch (error) {
-      // console.log("CREATE COURSE API ERROR............", error)
+      console.log("VIDEO SUMMARIZATIONAPI ERROR............", error)
       toast.error(error.message)
     }
    
