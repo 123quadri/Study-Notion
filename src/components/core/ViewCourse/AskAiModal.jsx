@@ -16,13 +16,14 @@ const AskAiModal = ({ setAskAi, context }) => {
             toast.error("Please type question");
             return
         }
-        setQuestion("");
+     
         setMessages((prev) => [...prev,question]);
         const formData = new FormData()
         formData.append("question",question);
         formData.append("context",context)
         const response = await askQuestionRequest(formData,token);
         setMessages((prev) => [...prev,response]);
+        setQuestion("");
 
     }
   return (
