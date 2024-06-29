@@ -12,7 +12,7 @@ exports.contactUsController = async (req, res) => {
     //   contactUsEmail(email, firstname, lastname, message, phoneNo, countrycode)
     // )
 
-    const emailResTwo = await contactUsMailSender(email,"Study Notion Contact Us" , 
+    const emailResTwo = await contactUsMailSender(email,"Intelli Study Contact Us" , 
       `from ${email} 
       Message is : ${message}
       `

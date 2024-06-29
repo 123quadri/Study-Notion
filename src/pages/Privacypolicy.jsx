@@ -6,7 +6,7 @@ const Privacypolicy = () => {
   return (
     <div className='w-[100%] mt-[3rem] text-white'>
     <h1 className='w-[80%] font-[600] text-[36px] leading-[44px] 
-    font-inter text-richblack-5 mx-auto text-center'>Study Notion Privacy Statement</h1>
+    font-inter text-richblack-5 mx-auto text-center'>Intelli Study Privacy Statement</h1>
 
         <div className='w-[80%] lg:w-[60%] mx-auto flex flex-col gap-y-7 mt-[2rem]'>
             {

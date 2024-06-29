@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import HighlightText from '../components/core/HomePage/HighlightText'
 import CTAButton from "../components/core/HomePage/Button"
 import Banner from "../assets/Images/banner.mp4"
+import Banner2 from "../assets/Images/Banner2.mp4"
 import CodeBlocks from '../components/core/HomePage/CodeBlocks'
 import Footer from '../components/common/Footer'
 import TimelineSection from '../components/core/HomePage/TimelineSection'
@@ -188,7 +189,7 @@ const Home = () => {
 
                     <div className='flex flex-col gap-10w-[100%] sm:w-[45%] items-start'>
                     <div className='text-[16px] mb-[10px]'>
-                    The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
+                    The modern Intelli Study is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
                     </div>
                     <CTAButton active={true} linkto={"/learn-more"}>
                         <div>

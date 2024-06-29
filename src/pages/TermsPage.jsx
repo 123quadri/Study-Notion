@@ -30,7 +30,7 @@ const TermsPage = () => {
         className='w-[80%] font-[500] text-[16px] leading-[20px] mt-[2rem]
         font-inter text-richblack-5 mx-auto text-center'
         >These Terms of Use represent the entire agreement between 
-        you and StudyNotion regarding your use of the platform.</h1>
+        you and Intelli Study regarding your use of the platform.</h1>
 
         
         <Footer/> 

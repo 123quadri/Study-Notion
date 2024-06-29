@@ -2,13 +2,13 @@ export  const privacyPolicyData = [
     {
         id:1,
         heading:"Privacy Policy",
-        description:"At StudyNotion, we are committed to protecting the privacy and confidentiality of our users' personal information. This Privacy Policy outlines how we collect, use, and safeguard the information you provide to us when using our ed-tech platform.",
+        description:"At Intelli Study, we are committed to protecting the privacy and confidentiality of our users' personal information. This Privacy Policy outlines how we collect, use, and safeguard the information you provide to us when using our ed-tech platform.",
         subData:[]
     },
     {
         id:2,
         heading:"Information We Collect",
-        description:"When you create an account on StudyNotion, we may collect certain personal information, including but not limited to your name, email address, username, and profile information. We may also collect information related to your educational background and interests to personalize your learning experience.Additionally, we may collect non-personal information automatically when you use our platform, such as your IP address, device information, and usage statistics. This information is collected using cookies and similar technologies to improve our services and enhance your user experience.",
+        description:"When you create an account on Intelli Study, we may collect certain personal information, including but not limited to your name, email address, username, and profile information. We may also collect information related to your educational background and interests to personalize your learning experience.Additionally, we may collect non-personal information automatically when you use our platform, such as your IP address, device information, and usage statistics. This information is collected using cookies and similar technologies to improve our services and enhance your user experience.",
         subData:[]
     },
     {
@@ -24,7 +24,7 @@ export  const privacyPolicyData = [
             {
                 id:2,
                 subHeading:"Communication:",
-                subDescription:"We may use your email address to send you important notifications, updates, and promotional offers related to StudyNotion. You can opt-out of receiving marketing communications at any time."
+                subDescription:"We may use your email address to send you important notifications, updates, and promotional offers related to Intelli Study. You can opt-out of receiving marketing communications at any time."
             },
             {
                 id:3,
@@ -70,7 +70,7 @@ export  const privacyPolicyData = [
     {
         id:6,
         heading:"Your Rights and Choices",
-        description:"You have certain rights regarding the personal information we hold about you. You can access, update, and delete your personal information through your StudyNotion account settings. You can also contact us to exercise your rights or request further information about our data practices.",
+        description:"You have certain rights regarding the personal information we hold about you. You can access, update, and delete your personal information through your Intelli Study account settings. You can also contact us to exercise your rights or request further information about our data practices.",
         subData:[]
     },
     {
@@ -82,7 +82,7 @@ export  const privacyPolicyData = [
     {
         id:8,
         heading:"Contact Us",
-        description:"If you have any questions, concerns, or inquiries regarding this Privacy Policy or our data practices, please contact us at contact@studynotion.com.By using StudyNotion, you acknowledge that you have read and understood this Privacy Policy and agree to the collection, use, and disclosure of your personal information as described herein. Please note that this is a general example, and it's important to tailor the Privacy Policy to your specific platform and legal requirements. It is recommended to consult with a legal professional to ensure compliance with applicable privacy laws and regulations.",
+        description:"If you have any questions, concerns, or inquiries regarding this Privacy Policy or our data practices, please contact us at contact@intellistudy.com.By using Intelli Study, you acknowledge that you have read and understood this Privacy Policy and agree to the collection, use, and disclosure of your personal information as described herein. Please note that this is a general example, and it's important to tailor the Privacy Policy to your specific platform and legal requirements. It is recommended to consult with a legal professional to ensure compliance with applicable privacy laws and regulations.",
         subData:[]
     },
 ]

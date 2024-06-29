@@ -44,6 +44,7 @@ exports.aiDoubtRequest = async (req, res) => {
         const genAI = new GoogleGenerativeAI(process.env.GEN_AI_KEY);
         const model = genAI.getGenerativeModel({ model: "gemini-pro"});
         const prompt= `${context}\n\nQuestion: ${question}\nAnswer:`
+		console.log("In ask  ai:");
         const result = await model.generateContent(prompt);
         const response = await result.response;
         const answer = response.text();
@@ -54,7 +55,7 @@ exports.aiDoubtRequest = async (req, res) => {
 			data:answer,
 		});
 	} catch (error) {
-		// console.log(error);
+		console.log(" error in ask ai :",error);
 		return res.status(500).json({
 			success: false,
 			error: error.message,
