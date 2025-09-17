@@ -42,6 +42,9 @@ exports.sendotp = async (req,res) => {
             result = await OTP.findOne({otp:otp});
         }
 
+        console.log("OPT is : ",otp);
+        
+
         const otpPayload = {email,otp};
         const otpBody = await OTP.create(otpPayload);
         // console.log("otpBody is : ",otpBody);

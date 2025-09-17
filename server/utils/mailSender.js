@@ -8,7 +8,13 @@ const mailSender = async (email, title, body) => {
                 auth:{
                     user: process.env.MAIL_USER,
                     pass: process.env.MAIL_PASS,
-                }
+                },
+                tls: {
+                rejectUnauthorized: false // Allow self-signed certificates
+                },
+                connectionTimeout: 60000, // 60 seconds
+                greetingTimeout: 30000,   // 30 seconds
+                socketTimeout: 60000,    // 60 seconds
             })
             // console.log("Mail is :" ,  email);
 
