@@ -27,42 +27,52 @@ const VideoDetails = () => {
   const [previewSource, setPreviewSource] = useState("");
   const [videoEnded, setVideoEnded] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [videoSummary,setSummary] = useState(null);
-  const [videoTranscript,setTranscript] = useState(null);
+  const [videoSummary, setSummary] = useState(null);
+  const [videoTranscript, setTranscript] = useState(null);
   const [summaryModal, setSummaryModal] = useState(null);
-  const [askAi,setAskAi] = useState(false);
+  const [askAi, setAskAi] = useState(false);
+
+  // First useEffect - Set video data
   useEffect(() => {
     (async () => {
       if (!courseSectionData.length) return;
       if (!courseId && !sectionId && !subSectionId) {
         navigate(`/dashboard/enrolled-courses`);
       } else {
-        // console.log("courseSectionData", courseSectionData)
         const filteredData = courseSectionData.filter(
           (course) => course._id === sectionId
         );
-        // console.log("filteredData", filteredData)
         const filteredVideoData = filteredData?.[0]?.subSection.filter(
           (data) => data._id === subSectionId
         );
-        // console.log("filteredVideoData", filteredVideoData)
         setVideoData(filteredVideoData?.[0]);
-        if(videoData?.videoUrl && videoData?.videoUrl){
-          const formData = new FormData()
-          formData.append("video_url",videoData?.videoUrl)
-          const response  = await sendSummarizationRequest(formData,token)
-          setSummary(response.summmary);
-          setTranscript(response.transcript)
-        }
-         
         setPreviewSource(courseEntireData.thumbnail);
         setVideoEnded(false);
       }
     })();
   }, [courseSectionData, courseEntireData, location.pathname]);
 
+  // Second useEffect - Handle summarization when videoData changes
+  useEffect(() => {
+    const fetchSummary = async () => {
+      // Check if videoData is set and has videoUrl
+      if (videoData && videoData.videoUrl && token) {
+        try {
+          const formData = new FormData();
+          formData.append("video_url", videoData.videoUrl);
+          const response = await sendSummarizationRequest(formData, token);
+          if (response) {
+            setSummary(response.summmary);
+            setTranscript(response.transcript);
+          }
+        } catch (error) {
+          console.error("Error fetching summary:", error);
+        }
+      }
+    };
 
-
+    fetchSummary();
+  }, [videoData, token]); // This will run when videoData changes
 
   // check if the lecture is the first video of the course
   const isFirstVideo = () => {
@@ -83,8 +93,6 @@ const VideoDetails = () => {
 
   // go to the next video
   const goToNextVideo = () => {
-    // console.log(courseSectionData)
-
     const currentSectionIndx = courseSectionData.findIndex(
       (data) => data._id === sectionId
     );
@@ -95,8 +103,6 @@ const VideoDetails = () => {
     const currentSubSectionIndx = courseSectionData[
       currentSectionIndx
     ].subSection.findIndex((data) => data._id === subSectionId);
-
-    // console.log("no of subsections", noOfSubsections)
 
     if (currentSubSectionIndx !== noOfSubsections - 1) {
       const nextSubSectionId =
@@ -141,8 +147,6 @@ const VideoDetails = () => {
 
   // go to the previous video
   const goToPrevVideo = () => {
-    // console.log(courseSectionData)
-
     const currentSectionIndx = courseSectionData.findIndex(
       (data) => data._id === sectionId
     );
@@ -184,8 +188,6 @@ const VideoDetails = () => {
     }
     setLoading(false);
   };
-
-  
 
   return (
     <div className="flex flex-col gap-5 text-white">
@@ -262,46 +264,42 @@ const VideoDetails = () => {
       )}
 
       <div className="flex gap-x-4 w-[50%]">
-
-      <button
-         className="flex items-center 
+        <button
+          className="flex items-center 
       bg-yellow-50 text-richblack-900
         cursor-pointer gap-x-2 rounded-md py-2 px-5 font-semibold w-[33%]"
-        onClick={() =>
-          setSummaryModal({  
-            btn1Text: "Close",
-            btn1Handler: () => setSummaryModal(null),
-            summary:videoSummary,
-            videoTranscript:videoTranscript
-          })
-        }
-       
-      >
-        <div className="flex items-center gap-x-2">
-          <span>Summarize Video</span>
-        </div>
-      </button>
+          onClick={() =>
+            setSummaryModal({
+              btn1Text: "Close",
+              btn1Handler: () => setSummaryModal(null),
+              summary: videoSummary,
+              videoTranscript: videoTranscript
+            })
+          }
+        >
+          <div className="flex items-center gap-x-2">
+            <span>Summarize Video</span>
+          </div>
+        </button>
 
-      
-      <button
-         className="flex items-center 
+        <button
+          className="flex items-center 
       bg-yellow-50 text-richblack-900
         cursor-pointer gap-x-2 rounded-md py-2 px-5 font-semibold w-[18%]"
-        onClick={() =>setAskAi(true)}
-      >
-        <div className="flex items-center gap-x-2">
-          <span>Ask AI</span>
-        </div>
-      </button>
+          onClick={() => setAskAi(true)}
+        >
+          <div className="flex items-center gap-x-2">
+            <span>Ask AI</span>
+          </div>
+        </button>
       </div>
 
       <h1 className="mt-4 text-3xl font-semibold">{videoData?.title}</h1>
       <p className="pt-2 pb-6">{videoData?.description}</p>
-      {summaryModal && <SummaryModal modalData={summaryModal}  />}
-      {askAi && <AskAiModal setAskAi={setAskAi} context={videoTranscript}/>}
+      {summaryModal && <SummaryModal modalData={summaryModal} />}
+      {askAi && <AskAiModal setAskAi={setAskAi} context={videoTranscript} />}
     </div>
   );
 };
 
 export default VideoDetails;
-// video
