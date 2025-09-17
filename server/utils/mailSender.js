@@ -12,9 +12,9 @@ const mailSender = async (email, title, body) => {
                 tls: {
                 rejectUnauthorized: false // Allow self-signed certificates
                 },
-                connectionTimeout: 60000, // 60 seconds
-                greetingTimeout: 30000,   // 30 seconds
-                socketTimeout: 60000,    // 60 seconds
+                connectionTimeout: 180000, // 180 seconds
+                greetingTimeout: 180000,   // 180 seconds
+                socketTimeout: 180000,    // 180 seconds
             })
             // console.log("Mail is :" ,  email);
 
