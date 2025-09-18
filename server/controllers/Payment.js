@@ -47,7 +47,7 @@ exports.capturePayment = async (req,res) => {
     const options = {
         amount:totalAmount*100,
         currency : "INR",
-        receipt : Math.random(Date.now().toString()),
+        receipt :`rcpt_${Date.now()}`.substring(0, 40),
     }
 
     try {
@@ -58,13 +58,14 @@ exports.capturePayment = async (req,res) => {
         });    
     } 
     catch (error) {
-        // console.log("error is capture payment 2 : " , error);
+        console.log("error is capture payment 2 : " , error);
         res.status(500).json({
             success:false,
             message:"Could not initiate order"
         });
     }
 }
+
 
 
 //verify the payment
