@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@google/generative-ai": "^0.11.3",
+    "@sendgrid/mail": "^8.1.5",
     "assemblyai": "^4.4.3",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
