@@ -1,3 +1,37 @@
+const brevo = require("@getbrevo/brevo");
+require("dotenv").config();
+
+let apiInstance = new brevo.TransactionalEmailsApi();
+apiInstance.setApiKey(
+  brevo.TransactionalEmailsApiApiKeys.apiKey,
+  process.env.BREVO_API_KEY,
+);
+
+const mailSender = async (email, title, body) => {
+  try {
+    const sendSmtpEmail = new brevo.SendSmtpEmail();
+
+    sendSmtpEmail.subject = title;
+    sendSmtpEmail.to = [{ email: email }]; // Send to the recipient
+    sendSmtpEmail.htmlContent = body;
+    sendSmtpEmail.sender = {
+      name: "IntelliStudy",
+      email: process.env.MAIL_USER, // intellistudyai@gmail.com
+    };
+
+    const data = await apiInstance.sendTransacEmail(sendSmtpEmail);
+
+    console.log("✓ Email sent successfully to:", email);
+    console.log("Message ID:", data.messageId);
+    return data;
+  } catch (error) {
+    console.error("✗ Brevo Error:", error.message || error);
+    return null;
+  }
+};
+
+module.exports = mailSender;
+
 // const nodemailer = require("nodemailer");
 // require("dotenv").config();
 
@@ -18,7 +52,6 @@
 //             })
 //             // console.log("Mail is :" ,  email);
 
-
 //             let info = await transporter.sendMail({
 //                 from: process.env.MAIL_USER,
 //                 to:`${email}`,
@@ -34,32 +67,31 @@
 //     }
 // }
 
+// module.exports = mailSender;
+// const sgMail = require('@sendgrid/mail');
+// require("dotenv").config();
+
+// const mailSender = async (email, title, body) => {
+//     try {
+//         // Set SendGrid API key
+//         sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+//         const msg = {
+//             to: email,  // Recipient email (no change needed)
+//             from: process.env.MAIL_USER,  // Your verified sender email
+//             subject: title,  // Email subject (no change needed)
+//             html: body,  // Email body (no change needed)
+//         };
+
+//         const response = await sgMail.send(msg);
+//         console.log('Email sent successfully to:', email);
+//         return response;
+
+//     } catch (error) {
+//         console.error('SendGrid Error:', error.response?.body || error.message);
+//         // Don't throw error to prevent app crash, just log it
+//         return null;
+//     }
+// };
 
 // module.exports = mailSender;
-const sgMail = require('@sendgrid/mail');
-require("dotenv").config();
-
-const mailSender = async (email, title, body) => {
-    try {
-        // Set SendGrid API key
-        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-        
-        const msg = {
-            to: email,  // Recipient email (no change needed)
-            from: process.env.MAIL_USER,  // Your verified sender email
-            subject: title,  // Email subject (no change needed)
-            html: body,  // Email body (no change needed)
-        };
-        
-        const response = await sgMail.send(msg);
-        console.log('Email sent successfully to:', email);
-        return response;
-        
-    } catch (error) {
-        console.error('SendGrid Error:', error.response?.body || error.message);
-        // Don't throw error to prevent app crash, just log it
-        return null;
-    }
-};
-
-module.exports = mailSender;
