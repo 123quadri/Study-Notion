@@ -1,33 +1,42 @@
-const { Resend } = require("resend");
+const brevo = require("@getbrevo/brevo");
 require("dotenv").config();
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let apiInstance = new brevo.TransactionalEmailsApi();
+apiInstance.setApiKey(
+  brevo.TransactionalEmailsApiApiKeys.apiKey,
+  process.env.BREVO_API_KEY,
+);
 
 const mailSender = async (email, title, body) => {
   try {
-    const data = await resend.emails.send({
-      from: "onboarding@resend.dev", // Use Resend's domain (or your verified domain)
-      to: process.env.MAIL_USER, // You receive emails here (intellistudyai@gmail.com)
-      replyTo: email, // When you hit reply, goes to the user
-      subject: title,
-      html: `
-        <div style="font-family: Arial, sans-serif; padding: 20px;">
-          <h2 style="color: #333;">Contact Form Submission</h2>
-          <p><strong>From:</strong> ${email}</p>
-          <hr style="border: 1px solid #eee; margin: 20px 0;" />
-          <div style="margin-top: 20px;">
-            ${body}
-          </div>
+    const sendSmtpEmail = new brevo.SendSmtpEmail();
+
+    sendSmtpEmail.subject = title;
+    sendSmtpEmail.to = [{ email: process.env.MAIL_USER }]; // You receive emails here (intellistudyai@gmail.com)
+    sendSmtpEmail.htmlContent = `
+      <div style="font-family: Arial, sans-serif; padding: 20px;">
+        <h2 style="color: #333;">Contact Form Submission</h2>
+        <p><strong>From:</strong> ${email}</p>
+        <hr style="border: 1px solid #eee; margin: 20px 0;" />
+        <div style="margin-top: 20px;">
+          ${body}
         </div>
-      `,
-    });
+      </div>
+    `;
+    sendSmtpEmail.sender = {
+      name: "IntelliStudy Contact Form",
+      email: process.env.MAIL_USER, // intellistudyai@gmail.com
+    };
+    sendSmtpEmail.replyTo = { email: email }; // When you hit reply, goes to the user
+
+    const data = await apiInstance.sendTransacEmail(sendSmtpEmail);
 
     console.log("✓ Email sent successfully");
     console.log("From:", email, "→ To:", process.env.MAIL_USER);
-    console.log("Email ID:", data.id);
+    console.log("Message ID:", data.messageId);
     return data;
   } catch (error) {
-    console.error("✗ Resend Error:", error);
+    console.error("✗ Brevo Error:", error.message || error);
     return null;
   }
 };
