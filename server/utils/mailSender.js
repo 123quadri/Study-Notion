@@ -26,7 +26,7 @@ const mailSender = async (email, title, body) => {
     return data;
   } catch (error) {
     console.error("✗ Brevo Error:", error.message || error);
-    return null;
+    throw error;
   }
 };
 
